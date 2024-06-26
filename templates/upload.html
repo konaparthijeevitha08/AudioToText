@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subtitle Superhero</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #007bff, #4285F4);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      width: 80%;
+      max-width: 600px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .button {
+      background-color: #4285F4;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .button:hover {
+      background-color: #3473E6;
+    }
+
+    .file-input {
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+    }
+
+    .file-input input[type="file"] {
+      display: none;
+    }
+
+    .file-input label {
+      display: block;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4285F4;
+      color: #fff;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .file-input label:hover {
+      background-color: #3473E6;
+    }
+
+    .video-preview {
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-preview video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .upload-icon {
+      font-size: 2em;
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Subtitle Superhero</h1>
+  <form method="post" action="/" enctype="multipart/form-data">
+    <div class="file-input">
+      <label for="file-upload">
+        <i class="fas fa-upload upload-icon"></i>
+        Select a media file
+      </label>
+      <input type="file" name="file" id="file-upload" accept="video/*">
+    </div>
+    <button type="submit" class="button">Convert</button>
+  </form>
+
+  {% if filename %}
+  <div class="video-preview">
+    <video autoplay controls preload="auto">
+      <source src="{{ url_for('static', filename='uploads/' + filename) }}" type="video/mp4">
+    </video>
+  </div>
+  {% endif %}
+</div>
+
+</body>
+</html>
+
+
+
